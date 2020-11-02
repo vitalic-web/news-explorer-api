@@ -1,0 +1,30 @@
+{
+  "name": "news-explorer-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitalic-web/news-explorer-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitalic-web/news-explorer-api/issues"
+  },
+  "homepage": "https://github.com/vitalic-web/news-explorer-api#readme",
+  "dependencies": {
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "nodemon": "^2.0.6"
+  }
+}
