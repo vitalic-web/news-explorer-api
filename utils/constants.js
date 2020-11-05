@@ -5,6 +5,7 @@ const serverErrorText = 'На сервере произошла ошибка';
 const notFoundArticleText = 'Статья не найдены';
 const notFoundArticlesText = 'Статьи не найдены';
 const notYourArticleText = 'Это не ваша статья';
+const successRegistrationText = (email) => `Пользователь ${email} успешно создан!`;
 const sameEmailExistsText = 'Пользователь с таким email уже существует';
 const errorMailOrPasswordText = 'Неправильные почта или пароль';
 const notFoundTokenText = 'Токен не найден';
@@ -18,6 +19,7 @@ module.exports = {
   notFoundArticleText,
   notFoundArticlesText,
   notYourArticleText,
+  successRegistrationText,
   sameEmailExistsText,
   errorMailOrPasswordText,
   notFoundTokenText,

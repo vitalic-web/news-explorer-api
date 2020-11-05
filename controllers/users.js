@@ -6,8 +6,10 @@ const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
 const UnauthorizedError = require('../errors/UnauthorizedError');
 const ConflictError = require('../errors/ConflictError');
+const { DEV_SECRET } = require('../utils/config');
 const {
   invalidDataText,
+  successRegistrationText,
   sameEmailExistsText,
   errorMailOrPasswordText,
   notFoundTokenText,
@@ -29,7 +31,7 @@ const createUser = (req, res, next) => {
           User.create({
             email, password: hash, name,
           })
-            .then(() => res.send({ message: `Пользователь ${email} успешно создан!` }))
+            .then(() => res.send({ message: successRegistrationText(email) }))
             .catch((err) => {
               if (err.name === 'ValidationError') {
                 next(new BadRequestError(invalidDataText));
@@ -61,7 +63,7 @@ const login = (req, res, next) => {
     .then((loggedUser) => {
       const token = jwt.sign(
         { _id: loggedUser._id },
-        NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+        NODE_ENV === 'production' ? JWT_SECRET : DEV_SECRET,
         { expiresIn: '7d' },
       ); // создаем токен сроком на 7 дней
       if (!token) {

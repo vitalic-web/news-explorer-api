@@ -6,7 +6,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 const app = express();
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, NODE_ENV, DB_CONNECT_PROD } = process.env;
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { errorHandler } = require('./middlewares/errorHandler');
 const { limiter } = require('./middlewares/limiter');
@@ -16,7 +16,7 @@ const { DB_CONNECT } = require('./utils/config');
 
 const { router } = require('./routes/index');
 
-mongoose.connect(DB_CONNECT, {
+mongoose.connect(NODE_ENV === 'production' ? DB_CONNECT_PROD : DB_CONNECT, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
