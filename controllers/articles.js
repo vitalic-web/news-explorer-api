@@ -2,7 +2,9 @@ const Article = require('../models/articles');
 const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
 const ForbiddenError = require('../errors/ForbiddenError');
-const { invalidDataText, notFoundArticlesText, notYourArticleText } = require('../utils/constants');
+const {
+  invalidDataText, notFoundArticleText, notFoundArticlesText, notYourArticleText,
+} = require('../utils/constants');
 
 // выгрузка всех статей
 const getAllArticles = (req, res, next) => {
@@ -39,12 +41,12 @@ const createArticle = (req, res, next) => {
 // удаление карточки по id
 const deleteArticleById = (req, res, next) => {
   Article.findById(req.params.articleId).select('+owner')
-    .orFail(new NotFoundError(notFoundArticlesText))
+    .orFail(new NotFoundError(notFoundArticleText))
     .then((article) => {
       if (article.owner.toString() !== req.user._id.toString()) {
         throw new ForbiddenError(notYourArticleText);
       }
-      return Article.findByIdAndRemove(article._id)
+      return Article.deleteOne(article)
         .then((result) => res.send({ data: result }))
         .catch(next);
     })

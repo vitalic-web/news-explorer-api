@@ -45,7 +45,7 @@ app.use(router);
 
 // обработка несуществующего адреса
 app.use('*', () => {
-  throw new NotFoundError({ message: notFoundText });
+  throw new NotFoundError(notFoundText);
 });
 
 // логгер ошибок
