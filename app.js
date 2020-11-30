@@ -28,7 +28,8 @@ app.use(limiter);
 
 // разрешить запросы с хоста (реакт)
 app.use(cors({
-  origin: 'https://vtl-news.ru',
+  // origin: 'https://vtl-news.ru',
+  origin: 'http://localhost:3000',
 }));
 
 app.use(helmet({
