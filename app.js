@@ -24,7 +24,7 @@ mongoose.connect(NODE_ENV === 'production' ? DB_CONNECT_PROD : DB_CONNECT, {
 });
 
 // создание лимита на запросы
-app.use(limiter);
+// app.use(limiter);
 
 // разрешить запросы с хоста (реакт)
 app.use(cors({
