@@ -6,9 +6,9 @@ const {
   invalidDataText, notFoundArticleText, notFoundArticlesText, notYourArticleText,
 } = require('../utils/constants');
 
-// выгрузка всех статей
-const getAllArticles = (req, res, next) => {
-  Article.find({}).sort({ createdAt: -1 })
+// выгрузка всех сохраненных статей юзера
+const getArticlesByOwner = (req, res, next) => {
+  Article.find({ owner: req.user._id }).select('+owner').sort({ createdAt: -1 })
     .then((cards) => {
       if (!cards) {
         throw new NotFoundError(notFoundArticlesText);
@@ -54,7 +54,7 @@ const deleteArticleById = (req, res, next) => {
 };
 
 module.exports = {
-  getAllArticles,
+  getArticlesByOwner,
   createArticle,
   deleteArticleById,
 };

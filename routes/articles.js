@@ -1,8 +1,8 @@
 const articlesRouter = require('express').Router();
-const { getAllArticles, createArticle, deleteArticleById } = require('../controllers/articles');
+const { getArticlesByOwner, createArticle, deleteArticleById } = require('../controllers/articles');
 const { validateCreateArticle, validateArticleId } = require('../middlewares/reqValidation');
 
-articlesRouter.get('/', getAllArticles);
+articlesRouter.get('/', getArticlesByOwner);
 articlesRouter.post('/', validateCreateArticle, createArticle);
 articlesRouter.delete('/:articleId', validateArticleId, deleteArticleById);
 
