@@ -24,12 +24,11 @@ mongoose.connect(NODE_ENV === 'production' ? DB_CONNECT_PROD : DB_CONNECT, {
 });
 
 // создание лимита на запросы
-// app.use(limiter);
+app.use(limiter);
 
 // разрешить запросы с хоста (реакт)
 app.use(cors({
-  // origin: 'https://vtl-news.ru',
-  origin: 'http://localhost:3000',
+  origin: 'https://vtl-news.ru',
 }));
 
 app.use(helmet({
